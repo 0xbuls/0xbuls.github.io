@@ -19,13 +19,24 @@ radial-gradient(circle at 50% 80%,rgba(236,72,153,.30),transparent 30%),
 linear-gradient(135deg,#080b16,#10152b,#180f2f);
 filter:blur(60px);
 }
+
+/* NAV */
 nav{
 position:fixed;top:0;width:100%;padding:18px 40px;
-background:rgba(10,10,20,.5);backdrop-filter:blur(12px);z-index:100
+background:rgba(10,10,20,.5);backdrop-filter:blur(12px);z-index:100;
+display:flex;gap:4px;
 }
-nav a{color:#cbd5e1;text-decoration:none;margin-right:22px}
+nav a{
+color:#cbd5e1;text-decoration:none;padding:8px 16px;border-radius:10px;
+transition:.3s;font-size:14px;font-weight:500;
+}
+nav a:hover{color:#fff;background:rgba(255,255,255,.08)}
+nav a.active{color:#a855f7;background:rgba(168,85,247,.15);box-shadow:0 0 12px rgba(168,85,247,.3)}
+
+/* SECTIONS */
 #home{min-height:100vh;padding:100px 8%;}
-section:not(#home){padding:50px 8%;}
+section:not(#home){padding:80px 8%;}
+
 .glass{
 background:rgba(255,255,255,.06);
 backdrop-filter:blur(16px);
@@ -44,16 +55,36 @@ background:linear-gradient(90deg,#60a5fa,#a855f7,#ec4899);
 display:inline-block;padding:12px 18px;margin:6px;
 border-radius:14px;color:#fff;text-decoration:none;
 background:rgba(255,255,255,.08);
-transition:.35s
+transition:.35s;
 }
 .btn:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 0 25px #8b5cf6}
 .stats,.grid{display:grid;gap:18px}
 .stats{grid-template-columns:repeat(4,1fr);margin-top:25px}
 .stat,.card,.item{
 background:rgba(255,255,255,.05);
-padding:20px;border-radius:18px
+padding:20px;border-radius:18px;
+}
+
+/* STAT CLICKABLE */
+.stat{
+cursor:pointer;
+transition:all .35s ease;
+position:relative;overflow:hidden;
+}
+.stat::after{
+content:'↓ Lihat';
+position:absolute;bottom:8px;right:12px;
+font-size:11px;color:#a855f7;opacity:0;
+transition:.3s;
+}
+.stat:hover::after{opacity:1}
+.stat:hover{
+transform:translateY(-6px) scale(1.04);
+box-shadow:0 0 30px rgba(168,85,247,.5);
+border:1px solid rgba(168,85,247,.4);
 }
 .stat h3{font-size:42px;color:#a855f7;text-shadow:0 0 20px #a855f7}
+
 h2{font-size:42px;margin-bottom:20px;color:#fff}
 .item{margin-bottom:14px}
 .item h3{color:#c084fc;margin-bottom:8px}
@@ -63,37 +94,60 @@ h2{font-size:42px;margin-bottom:20px;color:#fff}
 footer{text-align:center;padding:40px;color:#94a3b8}
 
 .hero-quote{
-    margin-top:120px;
-    text-align:center;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+margin-top:120px;text-align:center;
+display:flex;justify-content:center;align-items:center;
 }
 .hero-quote h2{
-    font-size:clamp(2.8rem,7vw,6rem);
-    line-height:1;
-    font-weight:800;
-    background:linear-gradient(90deg,#60a5fa,#818cf8,#a855f7);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+font-size:clamp(2.8rem,7vw,6rem);
+line-height:1;font-weight:800;
+background:linear-gradient(90deg,#60a5fa,#818cf8,#a855f7);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
 
+/* HOVER EFFECTS */
+.card,.item{transition:all .35s ease}
+.card:hover,.item:hover{
+transform:translateY(-6px) scale(1.02);
+box-shadow:0 0 25px rgba(168,85,247,.45);
+}
 
-.btn,.card,.stat,.item{
-    transition: all .35s ease;
+/* FADE-IN ANIMATION */
+.fade-in{
+opacity:0;
+transform:translateY(30px);
+transition:opacity .7s ease, transform .7s ease;
 }
-.card:hover,.stat:hover,.item:hover{
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 0 25px rgba(168,85,247,.45);
+.fade-in.visible{
+opacity:1;
+transform:translateY(0);
 }
-.btn:hover{
-    transform: translateY(-4px) scale(1.05);
+
+/* SCROLL TO TOP */
+#scrollTop{
+position:fixed;bottom:30px;right:30px;
+width:46px;height:46px;border-radius:50%;
+background:rgba(168,85,247,.7);border:none;
+color:#fff;font-size:20px;cursor:pointer;
+opacity:0;transition:.3s;z-index:200;
+box-shadow:0 0 20px rgba(168,85,247,.5);
 }
+#scrollTop.show{opacity:1}
+#scrollTop:hover{background:#a855f7;transform:scale(1.1)}
+
+/* RIPPLE */
+.ripple{
+position:absolute;border-radius:50%;
+background:rgba(168,85,247,.4);
+transform:scale(0);animation:ripple .6s linear;pointer-events:none;
+}
+@keyframes ripple{to{transform:scale(4);opacity:0}}
 
 @media(max-width:900px){
 .hero{grid-template-columns:1fr}
 .stats{grid-template-columns:repeat(2,1fr)}
 h1{font-size:52px}
+nav{padding:12px 16px;flex-wrap:wrap}
+nav a{font-size:13px;padding:6px 10px}
 }
 </style>
 </head>
@@ -101,27 +155,29 @@ h1{font-size:52px}
 <div class="nebula"></div>
 <div id="particles-js"></div>
 
-<nav>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#achievements">Achievements</a>
-<a href="#projects">Projects</a>
-<a href="#skills">Skills</a>
-<a href="#contact">Contact</a>
+<nav id="navbar">
+<a href="#home" class="nav-link">Home</a>
+<a href="#about" class="nav-link">About</a>
+<a href="#achievements" class="nav-link">Achievements</a>
+<a href="#projects" class="nav-link">Projects</a>
+<a href="#skills" class="nav-link">Skills</a>
+<a href="#contact" class="nav-link">Contact</a>
 </nav>
 
+<button id="scrollTop" onclick="scrollToTop()" title="Back to top">↑</button>
+
 <section id="home">
-<div class="glass hero">
-<div><img src="5yeye.png" alt="0xbuls"></div>
+<div class="glass hero fade-in">
+<div><img src="5yeye.jpg" alt="0xbuls"></div>
 <div>
 <h1>0xbuls</h1>
 <div class="subtitle">Web3 Researcher • Alpha Hunter • Content Creator • Contributor</div>
 <p>Focused on blockchain ecosystems, alpha opportunities, testnets, staking protocols, community growth and deep technical research.</p>
 <div>
-<a class="btn" href="https://github.com/0xbuls/Alpha-wallet">GitHub</a>
-<a class="btn" href="https://x.com/0xbuls">X</a>
-<a class="btn" href="https://t.me/oxbulss">Telegram</a>
-<a class="btn" href="https://www.linkedin.com/in/egi-mahesa-putra-283a571a8/">LinkedIn</a>
+<a class="btn" href="https://github.com/0xbuls/Alpha-wallet" target="_blank">GitHub</a>
+<a class="btn" href="https://x.com/0xbuls" target="_blank">X</a>
+<a class="btn" href="https://t.me/oxbulss" target="_blank">Telegram</a>
+<a class="btn" href="https://www.linkedin.com/in/egi-mahesa-putra-283a571a8/" target="_blank">LinkedIn</a>
 <a class="btn" href="mailto:ryuzakiabeng@gmail.com">Email</a>
 </div>
 
@@ -129,23 +185,31 @@ h1{font-size:52px}
 <span style="font-size:20px">🎮</span>
 <span style="color:#cbd5e1">Discord: <strong>0xbuls</strong></span>
 </div>
+
 <div class="stats">
-<div class="stat"><h3>11+</h3><p>Projects</p></div>
-<div class="stat"><h3>20+</h3><p>Testnets</p></div>
-<div class="stat"><h3>#1</h3><p>Canton CXP</p></div>
-<div class="stat"><h3>Alpha</h3><p>Contributor</p></div>
+<div class="stat" onclick="scrollToSection('projects')" title="Lihat Projects">
+<h3>11+</h3><p>Projects</p>
+</div>
+<div class="stat" onclick="scrollToSection('projects')" title="Lihat Testnets">
+<h3>20+</h3><p>Testnets</p>
+</div>
+<div class="stat" onclick="scrollToSection('achievements')" title="Lihat Achievements">
+<h3>#1</h3><p>Canton CXP</p>
+</div>
+<div class="stat" onclick="scrollToSection('achievements')" title="Lihat Contributions">
+<h3>Alpha</h3><p>Contributor</p>
+</div>
 </div>
 </div>
 </div>
 
-<div class="hero-quote">
+<div class="hero-quote fade-in">
 <h2>Alpha Finds Opportunity Before The Crowd</h2>
 </div>
-
 </section>
 
 <section id="about">
-<div class="glass">
+<div class="glass fade-in">
 <h2>About Me</h2>
 <p style="color:#cbd5e1;line-height:1.9">
 0xbuls is a Web3 researcher and ecosystem contributor with experience across Telegram airdrops,
@@ -156,7 +220,7 @@ and content creation. Passionate about discovering emerging projects and underst
 </section>
 
 <section id="achievements">
-<div class="glass">
+<div class="glass fade-in">
 <h2>Achievements</h2>
 <div class="grid">
 <div class="card">🏆 1st Place Canton CXP Event</div>
@@ -168,9 +232,8 @@ and content creation. Passionate about discovering emerging projects and underst
 </section>
 
 <section id="projects">
-<div class="glass">
+<div class="glass fade-in">
 <h2>Projects & Contributions</h2>
-
 <div class="item"><h3>Telegram Airdrop Ecosystem</h3><p>NotCoin, DogsCoin, Catizen researcher and participant.</p></div>
 <div class="item"><h3>Binance Megadrop</h3><p>BounceBIT, Holograph and ListaDAO campaigns.</p></div>
 <div class="item"><h3>ListaDAO</h3><p>Research and active testnet user.</p></div>
@@ -186,7 +249,7 @@ and content creation. Passionate about discovering emerging projects and underst
 </section>
 
 <section id="skills">
-<div class="glass">
+<div class="glass fade-in">
 <h2>Skills & Technology Stack</h2>
 <div class="grid">
 <div class="card">Management Skills</div>
@@ -206,16 +269,14 @@ and content creation. Passionate about discovering emerging projects and underst
 </section>
 
 <section id="contact">
-<div class="glass">
+<div class="glass fade-in">
 <h2>Contact</h2>
 <div class="grid">
-
 <div class="card" onclick="copyDiscord()" style="cursor:pointer"><b>Discord</b><br>0xbuls</div>
 <div class="card"><a href="https://x.com/0xbuls" target="_blank" style="color:inherit;text-decoration:none"><b>X</b><br>@0xbuls</a></div>
 <div class="card"><a href="https://t.me/oxbulss" target="_blank" style="color:inherit;text-decoration:none"><b>Telegram</b><br>@oxbulss</a></div>
 <div class="card"><a href="mailto:ryuzakiabeng@gmail.com" style="color:inherit;text-decoration:none"><b>Email</b><br>ryuzakiabeng@gmail.com</a></div>
 <div class="card"><a href="https://www.linkedin.com/in/egi-mahesa-putra-283a571a8/" target="_blank" style="color:inherit;text-decoration:none"><b>LinkedIn</b><br>Egi Mahesa Putra</a></div>
-
 </div>
 </div>
 </section>
@@ -237,9 +298,85 @@ opacity:{value:.5}
 </script>
 
 <script>
+// ── SMOOTH SCROLL TO SECTION ──
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const navH = document.getElementById('navbar').offsetHeight;
+  const top = el.getBoundingClientRect().top + window.scrollY - navH - 20;
+  window.scrollTo({ top, behavior: 'smooth' });
+
+  // ripple on stat
+  event.currentTarget && createRipple(event);
+}
+
+function createRipple(e) {
+  const el = e.currentTarget;
+  const r = document.createElement('span');
+  r.classList.add('ripple');
+  const size = Math.max(el.offsetWidth, el.offsetHeight);
+  const rect = el.getBoundingClientRect();
+  r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px`;
+  el.style.position = 'relative';
+  el.appendChild(r);
+  setTimeout(() => r.remove(), 700);
+}
+
+// ── NAV LINK SMOOTH SCROLL ──
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const id = this.getAttribute('href').replace('#','');
+    scrollToSection(id);
+  });
+});
+
+// ── ACTIVE NAV HIGHLIGHT ──
+const sections = document.querySelectorAll('section');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function updateActiveNav() {
+  const navH = document.getElementById('navbar').offsetHeight;
+  let current = '';
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if (top <= navH + 60) current = sec.id;
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  });
+}
+
+// ── SCROLL TO TOP ──
+const scrollTopBtn = document.getElementById('scrollTop');
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── FADE-IN ON SCROLL ──
+const fadeEls = document.querySelectorAll('.fade-in');
+function checkFade() {
+  fadeEls.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 80) el.classList.add('visible');
+  });
+}
+
+// ── SCROLL EVENT ──
+window.addEventListener('scroll', () => {
+  updateActiveNav();
+  checkFade();
+  scrollTopBtn.classList.toggle('show', window.scrollY > 300);
+});
+
+// Initial check
+checkFade();
+updateActiveNav();
+
+// ── DISCORD COPY ──
 function copyDiscord(){
- navigator.clipboard.writeText("0xbuls");
- alert("Discord username copied: 0xbuls");
+  navigator.clipboard.writeText("0xbuls");
+  alert("Discord username copied: 0xbuls");
 }
 </script>
 </body>
