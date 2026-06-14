@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0xbuls | Web3 Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,sans-serif;color:#fff;background:#090b14}
+#particles-js{position:fixed;inset:0;z-index:-1}
+.nebula{
+position:fixed;inset:0;z-index:-2;
+background:
+radial-gradient(circle at 20% 20%,rgba(139,92,246,.45),transparent 25%),
+radial-gradient(circle at 80% 30%,rgba(59,130,246,.35),transparent 25%),
+radial-gradient(circle at 50% 80%,rgba(236,72,153,.30),transparent 30%),
+linear-gradient(135deg,#080b16,#10152b,#180f2f);
+filter:blur(60px);
+}
+nav{
+position:fixed;top:0;width:100%;padding:18px 40px;
+background:rgba(10,10,20,.5);backdrop-filter:blur(12px);z-index:100
+}
+nav a{color:#cbd5e1;text-decoration:none;margin-right:22px}
+#home{min-height:100vh;padding:100px 8%;}
+section:not(#home){padding:50px 8%;}
+.glass{
+background:rgba(255,255,255,.06);
+backdrop-filter:blur(16px);
+border:1px solid rgba(255,255,255,.08);
+border-radius:28px;padding:35px;
+}
+.hero{display:grid;grid-template-columns:340px 1fr;gap:40px;align-items:center}
+.hero img{width:100%;border-radius:24px}
+h1{
+font-size:78px;
+background:linear-gradient(90deg,#60a5fa,#a855f7,#ec4899);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.subtitle{color:#94a3b8;font-size:20px;margin:12px 0 24px}
+.btn{
+display:inline-block;padding:12px 18px;margin:6px;
+border-radius:14px;color:#fff;text-decoration:none;
+background:rgba(255,255,255,.08);
+transition:.35s
+}
+.btn:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 0 25px #8b5cf6}
+.stats,.grid{display:grid;gap:18px}
+.stats{grid-template-columns:repeat(4,1fr);margin-top:25px}
+.stat,.card,.item{
+background:rgba(255,255,255,.05);
+padding:20px;border-radius:18px
+}
+.stat h3{font-size:42px;color:#a855f7;text-shadow:0 0 20px #a855f7}
+h2{font-size:42px;margin-bottom:20px;color:#fff}
+.item{margin-bottom:14px}
+.item h3{color:#c084fc;margin-bottom:8px}
+.item p{color:#cbd5e1;line-height:1.7}
+.grid{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.card{color:#dbeafe}
+footer{text-align:center;padding:40px;color:#94a3b8}
+
+.hero-quote{
+    margin-top:120px;
+    text-align:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.hero-quote h2{
+    font-size:clamp(2.8rem,7vw,6rem);
+    line-height:1;
+    font-weight:800;
+    background:linear-gradient(90deg,#60a5fa,#818cf8,#a855f7);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+
+.btn,.card,.stat,.item{
+    transition: all .35s ease;
+}
+.card:hover,.stat:hover,.item:hover{
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 0 25px rgba(168,85,247,.45);
+}
+.btn:hover{
+    transform: translateY(-4px) scale(1.05);
+}
+
+@media(max-width:900px){
+.hero{grid-template-columns:1fr}
+.stats{grid-template-columns:repeat(2,1fr)}
+h1{font-size:52px}
+}
+</style>
+</head>
+<body>
+<div class="nebula"></div>
+<div id="particles-js"></div>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#achievements">Achievements</a>
+<a href="#projects">Projects</a>
+<a href="#skills">Skills</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<section id="home">
+<div class="glass hero">
+<div><img src="5yeye.png" alt="0xbuls"></div>
+<div>
+<h1>0xbuls</h1>
+<div class="subtitle">Web3 Researcher • Alpha Hunter • Content Creator • Contributor</div>
+<p>Focused on blockchain ecosystems, alpha opportunities, testnets, staking protocols, community growth and deep technical research.</p>
+<div>
+<a class="btn" href="https://github.com/0xbuls/Alpha-wallet">GitHub</a>
+<a class="btn" href="https://x.com/0xbuls">X</a>
+<a class="btn" href="https://t.me/oxbulss">Telegram</a>
+<a class="btn" href="https://www.linkedin.com/in/egi-mahesa-putra-283a571a8/">LinkedIn</a>
+<a class="btn" href="mailto:ryuzakiabeng@gmail.com">Email</a>
+</div>
+
+<div style="margin-top:16px;display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);padding:10px 16px;border-radius:14px;border:1px solid rgba(255,255,255,.08);">
+<span style="font-size:20px">🎮</span>
+<span style="color:#cbd5e1">Discord: <strong>0xbuls</strong></span>
+</div>
+<div class="stats">
+<div class="stat"><h3>11+</h3><p>Projects</p></div>
+<div class="stat"><h3>20+</h3><p>Testnets</p></div>
+<div class="stat"><h3>#1</h3><p>Canton CXP</p></div>
+<div class="stat"><h3>Alpha</h3><p>Contributor</p></div>
+</div>
+</div>
+</div>
+
+<div class="hero-quote">
+<h2>Alpha Finds Opportunity Before The Crowd</h2>
+</div>
+
+</section>
+
+<section id="about">
+<div class="glass">
+<h2>About Me</h2>
+<p style="color:#cbd5e1;line-height:1.9">
+0xbuls is a Web3 researcher and ecosystem contributor with experience across Telegram airdrops,
+Binance Megadrops, staking ecosystems, blockchain infrastructure research, testnets, node operation,
+and content creation. Passionate about discovering emerging projects and understanding the technology behind them.
+</p>
+</div>
+</section>
+
+<section id="achievements">
+<div class="glass">
+<h2>Achievements</h2>
+<div class="grid">
+<div class="card">🏆 1st Place Canton CXP Event</div>
+<div class="card">⭐ Recognized Alpha Contributor in Canton</div>
+<div class="card">🧠 Somnia Ecosystem Research</div>
+<div class="card">⚙️ Retium Builder & Node Operator</div>
+</div>
+</div>
+</section>
+
+<section id="projects">
+<div class="glass">
+<h2>Projects & Contributions</h2>
+
+<div class="item"><h3>Telegram Airdrop Ecosystem</h3><p>NotCoin, DogsCoin, Catizen researcher and participant.</p></div>
+<div class="item"><h3>Binance Megadrop</h3><p>BounceBIT, Holograph and ListaDAO campaigns.</p></div>
+<div class="item"><h3>ListaDAO</h3><p>Research and active testnet user.</p></div>
+<div class="item"><h3>Solv Protocol</h3><p>Research and testnet participation.</p></div>
+<div class="item"><h3>Kernel Ecosystem</h3><p>KERNEL, Kelp and Gain contributor.</p></div>
+<div class="item"><h3>XION</h3><p>Active testnet participant.</p></div>
+<div class="item"><h3>GAIX AI</h3><p>AI testing and product feedback.</p></div>
+<div class="item"><h3>Somnia Blockchain Research</h3><p>Research covering ecosystem, founder Paul Thomas and architecture.</p></div>
+<div class="item"><h3>Canton Network</h3><p>OG member, content creator and community contributor.</p></div>
+<div class="item"><h3>GLOBE Project</h3><p>Research on Metcalfe's Law vs Moore's Law.</p></div>
+<div class="item"><h3>Retium Blockchain</h3><p>Builder, Developer Contributor, Node Operator, Ubuntu 24.04, Rust, Node.js, Docker and Proof of Math exploration.</p></div>
+</div>
+</section>
+
+<section id="skills">
+<div class="glass">
+<h2>Skills & Technology Stack</h2>
+<div class="grid">
+<div class="card">Management Skills</div>
+<div class="card">Creativity</div>
+<div class="card">Digital Marketing</div>
+<div class="card">Content Creation</div>
+<div class="card">Negotiation</div>
+<div class="card">Critical Thinking</div>
+<div class="card">Leadership</div>
+<div class="card">Python</div>
+<div class="card">Node.js</div>
+<div class="card">Rust</div>
+<div class="card">Docker</div>
+<div class="card">WSL2 / Ubuntu</div>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="glass">
+<h2>Contact</h2>
+<div class="grid">
+
+<div class="card" onclick="copyDiscord()" style="cursor:pointer"><b>Discord</b><br>0xbuls</div>
+<div class="card"><a href="https://x.com/0xbuls" target="_blank" style="color:inherit;text-decoration:none"><b>X</b><br>@0xbuls</a></div>
+<div class="card"><a href="https://t.me/oxbulss" target="_blank" style="color:inherit;text-decoration:none"><b>Telegram</b><br>@oxbulss</a></div>
+<div class="card"><a href="mailto:ryuzakiabeng@gmail.com" style="color:inherit;text-decoration:none"><b>Email</b><br>ryuzakiabeng@gmail.com</a></div>
+<div class="card"><a href="https://www.linkedin.com/in/egi-mahesa-putra-283a571a8/" target="_blank" style="color:inherit;text-decoration:none"><b>LinkedIn</b><br>Egi Mahesa Putra</a></div>
+
+</div>
+</div>
+</section>
+
+<footer>© 2026 0xbuls • Web3 Researcher & Contributor</footer>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+particlesJS("particles-js",{
+particles:{
+number:{value:140},
+color:{value:"#8b5cf6"},
+line_linked:{enable:true,color:"#8b5cf6",opacity:0.25},
+move:{enable:true,speed:1.5},
+size:{value:2},
+opacity:{value:.5}
+}
+});
+</script>
+
+<script>
+function copyDiscord(){
+ navigator.clipboard.writeText("0xbuls");
+ alert("Discord username copied: 0xbuls");
+}
+</script>
+</body>
+</html>
